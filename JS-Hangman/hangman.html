@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Hangman Game</title>
+</head>
+<body>
+    <h1>Hangman Game</h1>
+
+    <div id="hangman-image">
+        <img id="hangman-img" src="hangman_0.png" alt="Hangman">
+    </div>
+
+    <div id="word-display"></div>
+
+    <div id="attempts-left"></div>
+
+    <div id="game-over-message"></div>
+
+    <div id="input-form">
+        <label for="letter">Enter a letter: </label>
+        <input type="text" id="letter" maxlength="1" required>
+        <button onclick="checkLetter()">Check</button>
+    </div>
+
+    <script src="hangman.js"></script>
+</body>
+</html>
