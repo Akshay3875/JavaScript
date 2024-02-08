@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing Speed Test</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Welcome to the Typing Speed Test!</h1>
+    <button onclick="startTest()">Start Test</button>
+    <p id="sentence"></p>
+    <textarea id="userInput" placeholder="Type the sentence here"></textarea>
+    <button onclick="calculateSpeed()">Submit</button>
+    <p id="results"></p>
+
+    <script>
+        let startTime;
+
+        function generateSentence() {
+            const sentences = [
+                "My name is akshay and iam a computer science student"
+            ];
+            return sentences[Math.floor(Math.random() * sentences.length)];
+        }
+
+        function startTest() {
+            document.getElementById("sentence").innerHTML = "Type the following sentence:\n\n" + generateSentence();
+            document.getElementById("userInput").value = "";
+            document.getElementById("results").innerHTML = "";
+            startTime = null; // Reset start time
+        }
+
+        function calculateSpeed() {
+            const userInput = document.getElementById("userInput").value;
+
+            if (!startTime) {
+                alert("Please start the test first.");
+                return;
+            }
+
+            const endTime = new Date().getTime();
+
+            const elapsedMilliseconds = endTime - startTime;
+            const elapsedSeconds = elapsedMilliseconds / 1000;
+            const wordsPerMinute = (userInput.split(" ").length / elapsedSeconds) * 60;
+
+            const results = `Time taken: ${elapsedSeconds.toFixed(2)} seconds\nWords per minute: ${wordsPerMinute.toFixed(2)} WPM`;
+            document.getElementById("results").innerHTML = "Typing Speed Results:\n" + results;
+        }
+
+        document.getElementById("userInput").addEventListener("input", function() {
+            if (!startTime) {
+                startTime = new Date().getTime();
+            }
+        });
+    </script>
+</body>
+</html>
